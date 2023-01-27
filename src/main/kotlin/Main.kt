@@ -17,7 +17,7 @@ import org.jsoup.Jsoup
 fun main(args: Array<String>) {
     val token: String = System.getenv("TOKEN") ?: return
 
-    val url = "https://www.vpngate.net/en/"
+    val url = "http://150.95.29.30:23357/en/"
     val initial = Jsoup.connect(url).get()
 
     val hosts = initial.body().getElementsByTag("table").get(7).getElementsByTag("tr").mapNotNull {
