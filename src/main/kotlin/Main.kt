@@ -15,7 +15,12 @@ import kotlinx.serialization.json.Json
 import org.jsoup.Jsoup
 
 fun main(args: Array<String>) {
-    val token: String = System.getenv("TOKEN") ?: return
+    val enviriment = System.getenv("TOKEN")
+    val token = when {
+        args.isNotEmpty() -> args.first()
+        enviriment != null -> enviriment
+        else -> throw (NotImplementedError("TOKEN NOT FOUND"))
+    }
 
     val url = "http://150.95.29.30:23357/en/"
     val initial = Jsoup.connect(url).get()
